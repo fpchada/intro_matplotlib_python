@@ -17,7 +17,7 @@ __version__ = "1.1"
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib.gridspec as gridspec
 
 def ej1():
     # Line Plot
@@ -32,6 +32,16 @@ def ej1():
     y = []
     for i in x:
         y.append(i**2)
+        
+
+    fig= plt.figure()
+    ax= fig.add_subplot()
+    ax.plot(x,y, color='yellow')
+    ax.set_facecolor('lightgrey')
+    ax.set_title("Ejercicio 1")
+    ax.set_ylabel("Contribuyentes")
+    ax.set_xlabel("Convenios firmados")
+    plt.show()    
 
     # Crear una "figura" y crear un "ax" con add_subplot
     # Graficar el "line plot" de "Y" en función de "X"
@@ -59,6 +69,17 @@ def ej2():
     for i in x:
         y2.append(i**3)
 
+    fig = plt.figure()
+    ax= fig.add_subplot()
+    ax.plot(x, y1, color='black', label ='y=x**2')
+    ax.plot(x, y2, color= 'lightgreen', label ='y=x**3')
+    ax.set_facecolor('whitesmoke')
+    ax.set_title('Ejercicio 2')
+    ax.set_ylabel('Contribuyentes')
+    ax.set_xlabel('Convenios firmados')
+    ax.legend()
+    plt.show(block=False)
+
     # Realizar un gráfico que representen las dos funciones
     # Para ello se debe llamar dos veces a "plot" con el mismo "ax"
 
@@ -79,7 +100,20 @@ def ej3():
     # y = tanh(x) --> tangente hiperbólica
 
     # Implementacion
+    #np.random.shuffle(x)
     y = np.tanh(x)
+
+    fig = plt.figure()
+    fig.suptitle('Ejercicio 3', fontsize= 14)
+    ax= fig.add_subplot()
+    ax.scatter(x,y, color='violet', marker='^', label ='np.tanh(x)')
+    ax.set_facecolor('whitesmoke')
+    ax.set_title('np.tanh(x)')
+    ax.set_ylabel('Contribuyentes')
+    ax.set_xlabel('Convenios firmados')
+    ax.grid('solid')
+    plt.show()
+
 
     # Graficar la función utilizando "scatter"
 
@@ -109,8 +143,60 @@ def ej4():
     y3 = x**4
     y4 = np.sqrt(x)
 
+
     # Esos tres gráficos deben estar colocados
     # en la diposición de 3 filas y 1 columna:
+    
+    fig = plt.figure(constrained_layout=True)
+    spec = gridspec.GridSpec(ncols=2, nrows=2, figure = fig)
+
+    fig.suptitle("Ejercicio 4", fontsize=14)
+    
+    ax1= fig.add_subplot(spec[0,0])
+    ax2= fig.add_subplot(spec[0,1])
+    ax3= fig.add_subplot(spec[1,0])
+    ax4= fig.add_subplot(spec[1,1])
+    
+    ax1.plot(x, y1, color= 'lightblue', label='y1=x**2')
+    ax1.set_facecolor('whitesmoke')
+    ax1.set_title('Grafico 1')
+    ax1.grid(ls="dashed")
+    ax1.set_ylabel('contribuyentes')
+    ax1.set_xlabel('Convenios firmados')
+    print("")
+
+
+    ax2.plot(x, y2, color= 'gold', label='y2=x**3')
+    ax2.set_facecolor('whitesmoke')
+    ax2.grid(ls="dashdot")
+    ax2.set_title('Grafico 2')
+    ax2.set_ylabel('contribuyentes')
+    ax2.set_xlabel('Convenios firmados')
+
+    print("")
+
+    ax3.plot(x, y3, color= 'lightblue', label='y3=x**4')
+    ax3.set_facecolor('whitesmoke')
+    ax3.grid(ls="dashed")
+    ax3.set_title('Grafico 3')
+    ax3.set_ylabel('contribuyentes')
+    ax3.set_xlabel('Convenios firmados')
+
+    print("")
+
+    ax4.plot(x, y4, color= 'lightblue', label='y4 = np.sqrt(x)')
+    ax4.set_facecolor('whitesmoke')
+    ax4.grid(ls="dashdot")
+    ax4.set_title('Grafico 4')
+    ax4.set_ylabel('contribuyentes')
+    ax4.set_xlabel('Convenios firmados')
+
+    plt.show()
+
+
+
+
+
     # ------
     #  graf1 | graf2
     # ------
@@ -129,8 +215,7 @@ def ej4():
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
-    ej1()
-    # ej2()
-    # ej2()
-    # ej3()
-    # ej4()
+    #ej1()
+    #ej2()
+    #ej3()
+    ej4()
